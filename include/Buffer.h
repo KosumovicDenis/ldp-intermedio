@@ -1,17 +1,25 @@
 #ifndef LIDARDRIVER_INCLUDE_BUFFER_H_
 #define LIDARDRIVER_INCLUDE_BUFFER_H_
 
-class Buffer {
-    int size;
-    double* values;
+#include <cstddef>
+#include <assert.h>
+#include <algorithm>
 
-    class InvadilRange{};
+class Buffer {
+private:
+    int size_;
+    bool is_valid(int i) const;
+    double* data_;
 
 public:
-    Buffer(int sz);
+    class InvalidRange{};
+
+    explicit Buffer(int sz);
     Buffer(const Buffer& b);
     Buffer(Buffer&& b);
     ~Buffer();
+
+    int size() const;
 
     double& at(int i);
     double at(int i) const;
