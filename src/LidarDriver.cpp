@@ -1,6 +1,4 @@
 #include "../include/LidarDriver.h"
-#include <cmath>
-#include <vector>
 
 LidarDriver::LidarDriver(double degree): size {0}, first_element_index {0}, RESOLUTION {degree}
 {

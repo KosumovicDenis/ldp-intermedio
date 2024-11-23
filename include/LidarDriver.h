@@ -3,6 +3,8 @@
 
 #include <ostream>
 #include <vector>
+#include <cmath>
+#include <vector>
 
 class LidarDriver {
     static constexpr int BUFFER_DIM = 10;
