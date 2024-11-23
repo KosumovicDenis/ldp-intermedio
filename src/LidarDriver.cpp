@@ -30,11 +30,11 @@ void LidarDriver::new_scan(const std::vector<double>& buff)
     // and the size of a single scan buffer. 
     int min = buff.size() > scan[0].size() ? scan[0].size() : buff.size();
     // Fills the scan buffer up to min.
-    for (size_t i = 0; i < min; i++) {
+    for (int i = 0; i < min; i++) {
         scan[new_scan_index].at(i) = buff.at(i);
     }
     // If the user-provided array is not long enough, the remaining elements are filled with zeros.
-    for (size_t i = min; i < scan[0].size(); i++) {
+    for (int i = min; i < scan[0].size(); i++) {
         scan[new_scan_index].at(i) = 0;
     }
     

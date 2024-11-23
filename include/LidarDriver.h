@@ -1,15 +1,12 @@
 #ifndef LDP_INTERMEDIO_INCLUDE_LIDARDRIVER_H_
 #define LDP_INTERMEDIO_INCLUDE_LIDARDRIVER_H_
 
-#include <cstddef>
-#include <cstdint>
 #include <ostream>
 #include <vector>
-#include <iostream>
 
 class LidarDriver {
     static constexpr int BUFFER_DIM = 10;
-    static constexpr uint16_t POV = 180;
+    static constexpr int POV = 180;
     const double RESOLUTION;
 
     int size, first_element_index;

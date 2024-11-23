@@ -31,6 +31,7 @@ int main(void) {
         bu1.push_back((2 * i) + 0.1/ i);
     }
     l.new_scan(bu1);
+    l.new_scan(bu1);
 
     LOG(l);
     std::vector<double> v = l.get_scan();
