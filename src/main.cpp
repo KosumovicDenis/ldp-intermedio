@@ -45,6 +45,15 @@ int main(void) {
     LOG(l.get_distance(180));
     l.clear_buffer();
     LOG(l);
+    l.new_scan(std::vector<double> {1,2});
+    std::vector<double> bu2 = {1,2,3,4,5,6};
+    for(int i = 1; i < 70; i++) {    
+        bu2.push_back((2 * i));
+    }
+    l.new_scan(bu2);
+    l.new_scan(bu2);
+    l.new_scan(bu2);
+    LOG(l);
     
     return 0;
 }
