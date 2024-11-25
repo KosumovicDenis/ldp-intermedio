@@ -1,14 +1,13 @@
-#/bin/bash
+#!/bin/bash
 
 cd "$(dirname "$0")"
 
-cd ..
+cd ..;
 
-if [ -d "build/" ]; then
-  echo "Building..."
+if [ -d "build/" ]
+then
+	cd build/
+	make $1
 else
-  echo "Directory build does not exist, creating it..."
-  mkdir build
+    echo "Error: Directory build does not exist."
 fi
-
-g++ src/main.cpp src/LidarDriver.cpp -o build/ldp-intermedio

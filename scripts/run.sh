@@ -1,15 +1,13 @@
-#/bin/bash
+#!/bin/bash
 
 cd "$(dirname "$0")"
 
-
-cd ..
+cd ..;
 
 if [ -d "build/" ]
 then
-	echo "Running..."
-	./build/ldp-intermedio
+	cd build/
+	./ldp-intermedio
 else
-	echo "Directory build does not exist!"
+    echo "Error: Directory build does not exist."
 fi
-
