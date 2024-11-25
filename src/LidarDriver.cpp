@@ -68,11 +68,6 @@ void LidarDriver::clear_buffer()
 {
     size = 0;
     // first_element_index = 0;
-    for(int i = 0; i < scan.size(); i++) {
-        // Erases all elements from the container. After this call, size() returns zero.
-        // Leaves the capacity() of the vector unchanged!
-        scan[i].clear();
-    }
 }
 
 // Retrieves the distance from the latest scan based on the specified degree.
@@ -94,7 +89,6 @@ std::ostream& operator<<(std::ostream& os, const LidarDriver& l) {
     {
         os << " ~ Buffer n°" << i + 1 << " ~ \n";
         int k = (l.first_element_index + i) % l.BUFFER_DIM;
-        os << "k: " << k << '\n';
         for (int j = 0; j < l.scan[k].size(); j++)
         {
             os << l.scan[k][j] << '\t';
