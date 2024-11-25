@@ -67,7 +67,6 @@ std::vector<double> LidarDriver::get_scan()
 void LidarDriver::clear_buffer()
 {
     size = 0;
-    // first_element_index = 0;
 }
 
 // Retrieves the distance from the latest scan based on the specified degree.
@@ -95,7 +94,7 @@ std::ostream& operator<<(std::ostream& os, const LidarDriver& l) {
         }
         os << '\n';
     }
-    os << "-------------------------------";
+    os << "------------------------------------------";
 
     return os;
 }
