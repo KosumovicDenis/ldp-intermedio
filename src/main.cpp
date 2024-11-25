@@ -1,12 +1,43 @@
 #include <iostream>
+#include <fstream>
 
 #include "LidarDriver.h"
 
 #define LOG(x) std::cout << x << std::endl
 
-int main(void)
+int main(int argc, char *argv[])
 {
     LOG("Starting LidarDriver");
+
+    // TODO: file input
+    if (argc <= 1)
+    {
+    	LOG("Error! An input filename must be specified: ./ldp-intermedio input.txt");
+    	return 1;
+    }
+
+    std::ifstream file(argv[1]);
+
+    if (!file.is_open())
+    {
+    	LOG("Error reading the file \"" << argv[1] << "\"!");
+    }
+    else
+    {
+    	LOG("Parsing file " << argv[1]);
+    }
+
+    std::string str;
+
+    while (std::getline(file, str))
+    {
+        // TODO
+    }
+
+    if (file.bad())
+    {
+    	LOG("Error while reading file");
+    }
 
     // Initialize LidarDriver
     LidarDriver l = LidarDriver(5);
