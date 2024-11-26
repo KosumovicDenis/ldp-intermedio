@@ -32,4 +32,5 @@ Si può usare lo script `./scripts/buildandrun.sh` per compilare e subito dopo e
 
 - Toni Kosumovic
 - Denis Kosumovic
-- Davide Rorato
+- Davide Rorato - Configurazione CMake e creazione script + input da file di testo
+

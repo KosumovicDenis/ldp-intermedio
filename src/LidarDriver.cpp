@@ -2,8 +2,9 @@
 
 LidarDriver::LidarDriver(const double resolution) : kResolution{resolution}, size_{0}, oldest_scan_idx_{0}
 {
-    if (resolution < 0.1 && resolution > 1)
+    if (resolution < 0.1 || resolution > 1){
         throw InvalidResolution();
+    }
 }
 
 void LidarDriver::new_scan(const std::vector<double> &scan_to_store)
@@ -46,7 +47,7 @@ std::vector<double> LidarDriver::get_scan()
     if (size_ == 0)
         throw BufferEmptyError();
 
-    int oldest_scan_idx_prev = oldest_scan_idx_;
+    size_t oldest_scan_idx_prev = oldest_scan_idx_;
     // Updates oldest_scan_idx to point to the next oldest scan
     oldest_scan_idx_ = (oldest_scan_idx_ + 1) % kBufferDim;
     size_--;
@@ -67,15 +68,19 @@ double LidarDriver::get_distance(const double angle) const
     if (size_ == 0){
         throw BufferEmptyError();
     }
-    if (angle < 0 || angle > 180){
-        throw InvalidAngle();
-    }
-    int additional_index = 0;
-    if (std::fmod(angle, kResolution) >= kResolution / 2)
+
+    if (angle <= 0)
     {
-        additional_index++;
+        return scans_.at((oldest_scan_idx_ + size_ - 1) % kBufferDim).at(0);
     }
-    return scans_[(oldest_scan_idx_ + size_ - 1) % kBufferDim][static_cast<int>(angle / kResolution) + additional_index];
+    
+    size_t angle_idx = std::round(angle/kResolution);
+
+    if (angle_idx >= scans_.at(0).size())
+    {
+        angle_idx = scans_.at(0).size() - 1;
+    }
+    return scans_.at((oldest_scan_idx_ + size_ - 1) % kBufferDim).at(angle_idx);
 }
 
 std::ostream &operator<<(std::ostream &os, const LidarDriver &l)
@@ -87,9 +92,9 @@ std::ostream &operator<<(std::ostream &os, const LidarDriver &l)
     else
     {
         os << "{ ";
-        for (size_t i = 0; i < l.scans_.at(l.oldest_scan_idx_).size(); i++)
+        for (size_t i = 0; i < l.scans_.at((l.oldest_scan_idx_ + l.size_ - 1) % l.kBufferDim).size(); i++)
         {
-            os << l.scans_.at(l.oldest_scan_idx_).at(i) << ", ";
+            os << l.scans_.at((l.oldest_scan_idx_ + l.size_ - 1) % l.kBufferDim).at(i) << ", ";
         }
         os << "\b\b }";
     }

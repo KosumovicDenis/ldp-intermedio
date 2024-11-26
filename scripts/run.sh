@@ -7,7 +7,7 @@ cd ..;
 if [ -d "build/" ]
 then
 	cd build/
-	./ldp-intermedio
+	./ldp-intermedio ../input/input.txt
 else
     echo "Error: Directory build does not exist."
 fi
