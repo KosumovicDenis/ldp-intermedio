@@ -122,9 +122,9 @@ int main(int argc, char *argv[])
     {
         LOG(l.get_distance(42));
     }
-    catch (const std::exception &e)
+    catch (const LidarDriver::BufferEmptyError &e)
     {
-        std::cerr << e.what() << '\n';
+        std::cout << "[BufferEmptyError] Exception: Buffer is empty!\n";
     }
     LOG("================================================================================\n");
 
@@ -175,9 +175,9 @@ int main(int argc, char *argv[])
     {
         LidarDriver l1 = LidarDriver(1000);
     }
-    catch (const std::exception &e)
+    catch (const LidarDriver::InvalidResolution &e)
     {
-        std::cerr << e.what() << '\n';
+        std::cout << "[InvalidResolution] Exception: Resolution must be in the range [0.1, 1]\n";
     }
     LOG("================================================================================\n");
 

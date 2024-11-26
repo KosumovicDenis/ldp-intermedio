@@ -48,19 +48,9 @@ public:
     /// Prints the most recent scan saved, it doesn't get removed from the buffer
     friend std::ostream &operator<<(std::ostream &os, const LidarDriver &l);
 
-    class BufferEmptyError : public std::exception {
-        virtual const char* what() const noexcept
-        {
-            return "[BufferEmptyError] Exception: Buffer is empty!";
-        }
-    };
+    class BufferEmptyError {};
 
-    class InvalidResolution: public std::exception {
-        virtual const char* what() const noexcept
-        {
-            return "[InvalidResolution] Exception: Resolution must be in the range [0.1, 1]";
-        }
-    };
+    class InvalidResolution {};
 };
 
 #endif // LDP_INTERMEDIO_INCLUDE_LIDARDRIVER_H_
